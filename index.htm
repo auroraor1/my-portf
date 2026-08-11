@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+<script>document.documentElement.classList.add('js');</script>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -238,10 +239,12 @@
   .gallery{ display:grid; grid-template-columns:repeat(12, 1fr); gap:20px; }
   .g-item{
     position:relative; overflow:hidden; background:var(--ivory-2);
+  }
+  html.js .g-item{
     clip-path: inset(0 0 100% 0);
     transition: clip-path 1.1s cubic-bezier(.16,1,.3,1);
   }
-  .g-item.in-view{ clip-path: inset(0 0 0% 0); }
+  html.js .g-item.in-view{ clip-path: inset(0 0 0% 0); }
   .g-item img{
     width:100%; height:100%; object-fit:cover;
     transform:scale(1.12);
@@ -330,8 +333,8 @@
     flex-wrap:wrap; gap:10px;
   }
 
-  .reveal{ opacity:0; transform:translateY(24px); transition:opacity 1s cubic-bezier(.16,1,.3,1), transform 1s cubic-bezier(.16,1,.3,1); }
-  .reveal.in-view{ opacity:1; transform:translateY(0); }
+  html.js .reveal{ opacity:0; transform:translateY(24px); transition:opacity 1s cubic-bezier(.16,1,.3,1), transform 1s cubic-bezier(.16,1,.3,1); }
+  html.js .reveal.in-view{ opacity:1; transform:translateY(0); }
 
   @media (max-width:720px){
     nav{
@@ -552,6 +555,12 @@
   }, { threshold:0.16 });
 
   document.querySelectorAll('[data-reveal], .g-item').forEach(el=>io.observe(el));
+
+  // Safety net: if the observer/animation ever fails to fire (older or
+  // restrictive mobile browsers), force everything visible after 2.5s.
+  setTimeout(()=>{
+    document.querySelectorAll('.reveal:not(.in-view), .g-item:not(.in-view)').forEach(el=> el.classList.add('in-view'));
+  }, 2500);
 
   const filterBtns = document.querySelectorAll('.filter-btn');
   const galleryItems = document.querySelectorAll('#gallery .g-item');
