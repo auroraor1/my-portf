@@ -293,7 +293,10 @@
   .about p{ color:var(--ink-soft); max-width:52ch; margin-bottom:18px; }
   .about p.lead::first-letter{
     font-family:'Cormorant Garamond', serif; font-style:italic; font-size:64px;
-    float:left; line-height:.8; padding:6px 10px 0 0; color:var(--ink);
+    float:left; line-height:.75; padding:4px 8px 0 0; color:var(--ink);
+  }
+  @media (max-width:720px){
+    .about p.lead::first-letter{ font-size:44px; padding:2px 6px 0 0; }
   }
   .about-figure{ aspect-ratio:4/5; overflow:hidden; position:relative; }
   .about-figure::after{
@@ -459,7 +462,7 @@
     </div>
 
     <div class="g-item g-l" data-cat="footwear">
-      <img src="embers.webp" alt="Burgundy crystal-embellished heel on a marble pedestal" loading="lazy">
+      <img src="embers.jpg" alt="Burgundy crystal-embellished heel on a marble pedestal" loading="lazy">
       <div class="g-caption"><div class="num">Footwear</div><div class="ttl">Embers</div></div>
     </div>
     <div class="g-item g-m" data-cat="footwear">
@@ -467,7 +470,7 @@
       <div class="g-caption"><div class="num">Footwear</div><div class="ttl">Flutter</div></div>
     </div>
     <div class="g-item g-c" data-cat="footwear">
-      <img src="extra-nude-heel-alt.jpg" alt="Nude satin slingback heels" loading="lazy">
+      <img src="blush.jpg" alt="Nude satin slingback heels" loading="lazy">
       <div class="g-caption"><div class="num">Footwear</div><div class="ttl">Blush</div></div>
     </div>
     <div class="g-item g-d" data-cat="footwear">
